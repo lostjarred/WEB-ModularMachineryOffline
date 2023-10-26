@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipe Primer - Crafttweaker - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://docs.blamejared.com/1.12/en/Mods/ModularMachinery/Recipes/RecipePrimer">https://docs.blamejared.com/1.12/en/Mods/ModularMachinery/Recipes/RecipePrimer</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>RecipePrimer</h2>
+                    <p>A RecipePrimer Object is the actual recipe. 
+                        You can get such an object from the <a href="">RecipeBuilder</a> and use its methods to actually give the recipe ins and outs and stuff.</p>
+                    <h3>Importing the package</h3>
+                        <p>It might be required for you to import the package if you encounter any issues (like casting an <a href="https://docs.blamejared.com/1.12/en/AdvancedFunctions/Arrays_and_Loops">Array</a>), 
+                            so better be safe than sorry and add the import.</p>
+                        <p><span class="codehighlight">import mods.modularmachinery.RecipePrimer;</span></p>
+                    <h3>ZenMethods</h3>
+                        <p>Each of these methods does two things: First, it modifies the object, then it returns the object itself (as another RecipePrimer).</p>
+                        <p>This means you can either call each method on its own, or make one call where you append each pieces of code (example below).</p>
+                        <h4>Setting the chance</h4>
+                            <div class="codesection">
+                                <h5>ZenScript</h5>
+                                <p>setChance(float chance);</p>
+                            </div>
+                        <h4>Adding Energy and fuel requirements</h4>
+                            <div class="codesection"> 
+                                <h5>ZenScript</h5>
+                                <p>addEnergyPerTickInput(int perTick);</p>
+                                <p>addEnergyPerTickOutput(int perTick);</p>
+                                <p> </p>
+                                <p>//Typo? This is what the sourcecode sais, if it doesn't work try Input</p>
+                                <p>addFuelItemInout(int requiredTotalBurnTime);</p>
+                            </div>
+                        <h4>Adding inputs</h4>
+                            <p>You can add <a href="https://docs.blamejared.com/1.12/en/Vanilla/Items/IItemStack">IItemStacks</a>, <a href="https://docs.blamejared.com/1.12/en/Vanilla/OreDict/IOreDictEntry">IOreDictEntries</a> or <a href="https://docs.blamejared.com/1.12/en/Vanilla/Liquids/ILiquidStack">ILiquidStacks</a> as input.</p>
+                            <div class="codesection">
+                                <h5>ZenScript</h5>
+                                <p>addItemInput(IItemStack stack);</p>
+                                <p>addItemInput(IOreDictEntry oreDict);</p>
+                                <p>addItemInput(IOreDictEntry oreDict, int amount);</p>
+                                <p> </p>
+                                <p>addFluidInput(ILiquidStack stack);</p>
+                            </div>
+                        <h4>Adding outputs</h4>
+                            <p>You can add <a href="https://docs.blamejared.com/1.12/en/Vanilla/Items/IItemStack">IItemStacks</a>, <a href="https://docs.blamejared.com/1.12/en/Vanilla/OreDict/IOreDictEntry">IOreDictEntries</a> or <a href="https://docs.blamejared.com/1.12/en/Vanilla/Liquids/ILiquidStack">ILiquidStacks</a> as output.</p>
+                            <div class="codesection">
+                                <h5>ZenScript</h5>
+                                <p>addItemOutput(IItemStack stack);</p>
+                                <p>addItemOutput(IOreDictEntry oreDict);</p>
+                                <p>addItemOutput(IOreDictEntry oreDict, int amount);</p>
+                                <p> </p>
+                                <p> </p>
+                                <p>addFluidOutput(ILiquidStack stack);</p>
+                            </div>
+                        <h4>Building the recipe</h4>
+                            <p>After you have done your changes above, you need to build the recipe so that it will actually do something.</p>
+                            <div class="codesection">
+                                <h5>ZenScript</h5>
+                                <p>build();</p>
+                            </div>
+                        <h4>Example</h4>
+                        <div class="codesection">
+                            <h5>ZenScript</h5>
+                            <p>val reci = mods.modularmachinery.RecipeBuilder.newBuilder("recipeRegistryName", "associatedMachineRegistryName", 1000, 0);</p>
+                            <p>reci.addEnergyPerTickInput(100);</p>
+                            <p>reci.addItemInput(&ltore:ingotIron&gt);</p>
+                            <p>reci.addItemOutput(&ltminecraft:gold_ingot&gt);</p>
+                            <p>reci.build();</p>
+                            <p> </p>
+                            <p> </p>
+                            <p>val rec = mods.modularmachinery.RecipeBuilder.newBuilder("anotherRecipeRegistryName", "associatedMachineRegistryName", 1000, 0);</p>
+                            <p>rec.addEnergyPerTickInput(100).addFluidInput(&ltliquid:water&gt * 1000).addFluidInput(&ltliquid:lava&gt * 1000).addItemOutput(&ltminecraft:obsidian&gt * 2).build();</p>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
