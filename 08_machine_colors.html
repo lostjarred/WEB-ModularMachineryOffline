@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Machine Colors - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/9.-Custom-Machines:-Machine-Colors">https://github.com/HellFirePvP/ModularMachinery/wiki/9.-Custom-Machines:-Machine-Colors</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Machine Colors</h2>
+                    <p>In case orange totally doesn't fit the design of the machine you want to go for (so. like. 99% of the time), 
+                        you can recolor the machine once the machine controller found the structure of said machine. 
+                        It will then recolor casings or other blocks of ModularMachinery from orange to the color specified.</p>
+                    <p>It can be specified in the machine specification at top level like this:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            "registryname": "...",
+                            "localizedname": "...",
+                            "color": "dddddd",
+                            "parts": [
+                            [...]
+                        </p>
+                    </div>
+                    <p>The color specified is a hex color, ignoring the alpha channel. You can easily find the color you want with <a href="https://www.google.com/search?q=hex+color+picker">any hex color picker you prefer.</a></p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
