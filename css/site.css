@@ -1,0 +1,126 @@
+body {
+    background-color: darkslategrey;
+    background-image: url(../img/hex_drawing.png);
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    min-height: 800px;
+}
+
+div.menu {
+    width: 20%;
+    background-color: lightgray;
+    margin: 1%;
+    padding: 1%;
+    border: 5px;
+    border-color: red;
+    border-style: double;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+ul.menu {
+    list-style: none;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.content {
+    width: 80%;
+    background-color: lightgray;
+    margin: 1%;
+    padding: 1%;
+    border: 5px;
+    border-color: red;
+    border-style: double;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.contentbox {
+    border-bottom: 2px dashed red;
+}
+
+.contentbox:last-of-type {
+    border-bottom: 0px;
+}
+
+.header {
+    border-bottom: 2px dashed red;
+}
+
+li.menubutton {
+    border-bottom: 2px dashed red;
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+li.menubutton:first-of-type {
+    border-top: 2px dashed red;
+}
+li.menubutton:hover {
+    background-color: white;
+}
+a.menubutton {
+    text-decoration: none;
+    text-align: center;
+}
+
+p.menubutton {
+    margin: 2%;
+}
+
+.codesection {
+    border: 2px solid red;
+    background-color: white;
+    margin: 1%;
+    padding: 1%;
+}
+.codesection >h4 {
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    border-bottom: 2px solid red;
+}
+
+.codesection >p {
+    white-space: pre;
+}
+
+.codehighlight {
+    background-color: grey;
+}
+
+.boldtext {
+    font-weight: bold;
+}
+
+table {
+    border: 1px solid;
+}
+
+td {
+    border-right: 1px solid;
+}
+
+td:last-child  {
+    border-right: 0px;
+}
+
+th {
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+th:last-child  {
+    border-right: 0px;
+}
