@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Machine Format - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/2.-Custom-Machines:-Machine-format">https://github.com/HellFirePvP/ModularMachinery/wiki/2.-Custom-Machines:-Machine-format</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Machine format</h2>
+                    <p>Machine jsons (and variable jsons for them) have to be in the /config/modularmachinery/machinery/ folder.</p>
+                    <p>The format for defining a machine in json is as follows:</p>
+                    <div class="codesection">
+                        <p>
+                            {
+                                "registryname": "yourmachinesregistryname", //HAS to be unique.
+                                "localizedname": "however your machine is called when displaying its name", //Only used for display
+                                "requires-blueprint": true, //Set to true to make the machine require the blueprint for it in the controller's gui in order to function at all.
+                                "color": "FF4900", //Optional, hex color (without alpha) the casings of the structure will take on once the structure is assembled correctly
+                                "parts": [ //Array of position + applicable blockstates
+                                    {
+                                        "x": 1, //The position, relative to (0, 0, 0) where the controller-block is
+                                        "y": 1, //Not defining x, y or z means the offset is 0
+                                        "z": 1,
+                                        "elements": [ //Array of possible blockstates
+                                            //Define specific blockstates with metadata by
+                                            //appending @<metadata> after the block's registry name
+                                            "minecraft:stone@1"
+                                        ]
+                                    },
+                                    {
+                                        "y" 2,
+                                        //instead of an array, you can also specify only 1 blockstate if only 1 is applicable
+                                        //you can also define a variable here instead of an individual blockstate(s) (next chapter of the wiki)
+                                        "elements": "minecraft:stone@2"
+                                    }
+                                ]
+                            }
+                        </p>
+                    </div>
+                    <p>As an example for a proper machine definition, let's write up a JSON file for a centrifuge. The centrifuge should:</p>
+                    <ul>
+                        <li>Take in up 1 item and produce up to 4 items out of it and potentially a fluid.</li>
+                        <li>It should only generate those outputs with a certain chance. (example: Let's say output-item 1 only with 50% chance, output 2 only with 25% chance and output 3 and 4 only with 10%)</li>
+                        <li>Need a certain amount of RF per processing-tick</li>
+                    </ul>
+                    <p>So what do we need for our machine? At least 1 available position for an input bus, At least 1 available position for an output bus, 1 available position for a output hatch and at least 1 position for an energy hatch. Along with that, we need a registry name for it (so the mod can identify it later) and we need a localized name (so it has a name the mod can display to the player).</p>
+                    <p>From the absolutely necessary parts now to the 'optional' parts: The actual looks of the centrifuge and what blocks we want the player to place where in order to make it work. Let's say for this example we want to make a 3x3x3 sized machine. The bottom 3x3 layer will all be machine casings from Modular Machinery itself, which can either be machine casings OR input bus OR output bus OR output hatch OR energy hatch. The middle 3x3 layer should be iron bars in all corners, water in the center, iron blocks on the edge-sides and on one of these edge sides, we'll want the user to place the controller; so the controller will later be the 0, 0, 0 "center" of our machine and we'll design the other blocks around that block. The uppermost 3x3 layer will be again iron bars on all corners, iron blocks on the 4 edges and a glass block in the center.</p>
+                    <p>Alright, now we got a solid idea of what our machine will look like: Bottom layer should be all kinds of input, output, energy buses/hatches or just machine casings however the player wants to arrange those, the middle layer and upper layer will be some sort of iron block funnel with iron bars reinforcing it, water as actual centrifuge solvent and glass above it so it doesn't splash out. The controller as central piece will be embedded in the middle layer instead of one of the iron blocks.</p>
+                    <p>Additionally, you want to define your machine in positive Z direction since the controller is facing to negative Z. Rotate it and it'll look odd in preview and the controller will rotate oddly...</p>
+                    <p>From that now we write down the JSON for the machine: (Warning, might be long)</p>
+                    <div class="codesection">
+                        <p>
+                            {
+                                "registryname": "centrifuge",
+                                "localizedname": "Iron Reinforced Centrifuge",
+                                "parts": [
+                                    {
+                                        "x": 0,
+                                        "y": 1,
+                                        "z": 2,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": 0,
+                                        "y": 1,
+                                        "z": 0,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": 1,
+                                        "z": 1,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": 1,
+                                        "z": 1,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": 1,
+                                        "z": 2,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": 1,
+                                        "z": 2,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": 1,
+                                        "z": 0,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": 1,
+                                        "z": 0,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": 0,
+                                        "y": 1,
+                                        "z": 1,
+                                        "elements": "minecraft:glass"
+                                    },
+                            
+                            
+                            
+                                    {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 2,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": 0,
+                                        "z": 1,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": 0,
+                                        "z": 1,
+                                        "elements": "minecraft:iron_block"
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": 0,
+                                        "z": 2,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": 0,
+                                        "z": 2,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": 0,
+                                        "z": 0,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": 0,
+                                        "z": 0,
+                                        "elements": "minecraft:iron_bars"
+                                    },
+                                    {
+                                        "x": 0,
+                                        "y": 0,
+                                        "z": 1,
+                                        "elements": "minecraft:water"
+                                    },
+                            
+                                    {
+                                        "x": 1,
+                                        "y": -1,
+                                        "z": 2,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": 0,
+                                        "y": -1,
+                                        "z": 2,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": -1,
+                                        "z": 2,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": -1,
+                                        "z": 1,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": 0,
+                                        "y": -1,
+                                        "z": 1,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": -1,
+                                        "z": 1,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": 1,
+                                        "y": -1,
+                                        "z": 0,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": 0,
+                                        "y": -1,
+                                        "z": 0,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    },
+                                    {
+                                        "x": -1,
+                                        "y": -1,
+                                        "z": 0,
+                                        "elements": [
+                                            "modularmachinery:blockcasing",
+                                            "modularmachinery:blockinputitem",
+                                            "modularmachinery:blockinputenergy",
+                                            "modularmachinery:blockoutputitem",
+                                            "modularmachinery:blockoutputfluid"
+                                        ]
+                                    }
+                                ]
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
