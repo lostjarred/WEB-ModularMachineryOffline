@@ -92,6 +92,13 @@ p.menubutton {
     border-bottom: 2px solid red;
 }
 
+.codesection >h5 {
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    border-bottom: 2px solid red;
+}
+
 .codesection > p {
     white-space: pre;
     margin: 0%;
