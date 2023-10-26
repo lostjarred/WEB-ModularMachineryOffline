@@ -27,6 +27,7 @@
         menu = menu + "<h4>Craftweaker Modular Machinery</h4>"
         menu = menu + "<ul class='menu sub'>"
         menu = menu + addmenubutton("Modular Machinery", "100_ct_modular_machinery.html")
+        menu = menu + addmenubutton("Recipe Builder", "101_ct_recipebuilder.html")
         menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }
