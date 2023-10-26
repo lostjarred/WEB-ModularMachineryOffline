@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Furnace Fuel as Item Input - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/11.-Custom-Machines:-Furnace-Fuel-as-Item-Input">https://github.com/HellFirePvP/ModularMachinery/wiki/11.-Custom-Machines:-Furnace-Fuel-as-Item-Input</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Furnace Fuel as Item Input</h2>
+                    <p>As described in the titel of this page: You can also require a certain amount of furnace-fuel burn-ticks as item input. 
+                        So instead of defining a specific item as input you define it like this:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "type": "item",
+                                "io-type": "input",
+                                "item": "any:fuel",
+                            "time": <burnTimeInTicks>
+                            },
+                            [...]
+                        </p>
+                    </div>
+                    <p>"time" must be specified if you specify "any:fuel" as item input. 
+                        It describes how many burn-ticks the total amount of fuel-items found must provide in order for this to work.</p>
+                    <p>As an example, let's say you defined this with the burnTime of 3000. A piece of coal has a burntime of 1600. 
+                        So in order for this recipe to work, you have to provide 2 pieces of coal in an item input bus. Excess burntime that is provided over the required amount is voided. 
+                        For example a lava bucket has a burntime of 20000. The recipe only requires 3000 so the other 17000 will basically just disappear.</p>
+                    <p>In order to get the exact burntime of an itemstack, 
+                        you can either install a mod that provides this information when hovering over the item in the item's tooltip, 
+                        OR you can hold the item in your hand and execute /mm-hand. 
+                        This will also display the item's BurnTime in case it has any.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
