@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Machine Recipes - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/4.-Custom-Machines:-Machine-Recipes">https://github.com/HellFirePvP/ModularMachinery/wiki/4.-Custom-Machines:-Machine-Recipes</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Machine Recipes</h2>
+                    <p>Now that you've set up one machine or multiple with potential input/output options for items/fluids/energy, 
+                        you can now define recipes for those machines that the machine will then perform if the input items/fluids/energy necessary are present and space for output items/fluids/energy is available.</p>
+                    <p>This system allows for any kind of potential recipes you might want the machine to perform. 
+                        This can range from some sort of furnace that takes items and produces a set amount of 'energy' per tick, 
+                        up to something like a Fusion Reactor that takes several fluids as input and outputs another fluid and a lot of energy per tick. 
+                        It can also centrifuge items out of fluids for the cost of a set amount of energy per tick and so on and so forth. 
+                        There is no bounds to this kind of definition.</p>
+                    <p>However, there are certain things that have to be set so the recipe can function properly. 
+                        Let's first look at the format and then at a few examples:</p>
+                    <div class="codesection">
+                        <p>
+                            {
+                                //The machine's registry name
+                                //This is defined in the machine's json as 'registryname'
+                                "machine": "centrifuge",
+                            
+                                //Each recipe has to have a unique registry name
+                                //That way the mod can safely read and write
+                                //recipes from NBT.
+                                "registryName": "centrifuge_lava_generic",
+                            
+                                //The amount of time in ticks this recipe takes
+                                "recipeTime": 20,
+                            
+                                //The actual parts that are required for this recipe
+                                "requirements": [ //An array of said requirements
+                                    {
+                                        //The Component-Type that's involved
+                                        //Available types: energy, fluid, item
+                                        "type": "energy",
+                            
+                                        //The type of input/output interaction
+                                        //Available io-types: input, output
+                                        "io-type": "input",
+                            
+                                        //The component-type 'energy' expects this
+                                        //entry to determine how much energy per
+                                        //tick is outputted or consumed
+                                        "energyPerTick": 10
+                                    },
+                                    {
+                                        "type": "item",
+                                        "io-type": "output",
+                            
+                                        //The item-definition that defines
+                                        //which item is supposed to be produced
+                                        //or consumed by this recipe
+                                        "item": "minecraft:gold_nugget",
+                            
+                                        //For 'item' and 'fluid' component-types
+                                        //the chance-entry exists. This lets you
+                                        //set the chance a specific item or
+                                        //fluid is consumed or produced!
+                                        //Doesn't need to be defined! Will be 100% if not defined!
+                                        "chance": 0.01
+                                    },
+                                    {
+                                        "type": "item",
+                                        "io-type": "output",
+                                        "item": "minecraft:fire_charge",
+                                        "chance": 0.2
+                                    },
+                                    {
+                                        "type": "fluid",
+                                        "io-type": "input",
+                            
+                                        //The fluid-definition defines which
+                                        //fluid gets used in the input or
+                                        //produced in the output
+                                        "fluid": "lava",
+                            
+                                        //The amount of the fluid that gets
+                                        //consumed or produced in mB
+                                        //1000 mB (milliBucket) = 1 B (Bucket)
+                                        "amount": 10,
+                            
+                                        //This also can have a chance tag
+                                        //to define the chance that the fluid
+                                        //is consumed or produced at all
+                                        "chance": 0.8
+                                    }
+                                ]
+                            }
+                        </p>
+                    </div>
+                    <p>This defines a recipe for the 'centrifuge' which runs for 20 ticks - so 1 second ideally - uses up 10 'energy' per tick, 
+                        so a total of 200 'energy' (RF, FE, ...), uses up 10mB of lava with a chance of 80% to produce a gold nugget with a chance of 1% or a fire charge with the chance of 20%.</p>
+                    <p>Also: instead of defining only 1 machine in 'machine' you can also define an array of machines in 'machine' and the recipe will be added to all of those machines. Example:</p>
+                    <div class="codesection">
+                        <p>
+                            "machine": [
+                                "centrifuge",
+                                "some_other_machine",
+                                "another_machine"
+                            ]   
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
