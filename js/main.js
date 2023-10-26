@@ -23,6 +23,11 @@
         menu = menu + addmenubutton("12. Crafttweaker Recipe definitions [Advanced]", "011_craftweaker_recipe_definitions.html")
         menu = menu + addmenubutton("13. Recipe Modifiers [Advanced]", "012_recipe_modifiers.html")
         menu = menu + "</ul>"
+        menu = menu + "<hr>"
+        menu = menu + "<h4>Craftweaker Modular Machinery</h4>"
+        menu = menu + "<ul class='menu sub'>"
+        menu = menu + addmenubutton("Modular Machinery", "100_ct_modular_machinery.html")
+        menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }
 
