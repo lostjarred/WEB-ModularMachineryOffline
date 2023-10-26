@@ -9,6 +9,7 @@
         let menuelement = document.getElementById("menu-div")
         let menu = "<ul class='menu'>"
         menu = menu + addmenubutton("home", "index.html")
+        menu = menu + addmenubutton("1. Keynotes", "00_keynotes.html")
         menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }

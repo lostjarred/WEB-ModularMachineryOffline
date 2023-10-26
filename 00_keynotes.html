@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keynotes - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki">https://github.com/HellFirePvP/ModularMachinery/wiki</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Key notes</h2>
+                    <p>In order to make a custom machine, its "components" have to be defined. 
+                        The machine is 1 controller block in the "center" and the rest of the machinery is placed around it in a specific pattern. 
+                        If the pattern is valid, 
+                        the controller will then recognize that said machine was correctly assembled and will then perform crafting/processing of whatever kind of recipes you've made up for it (explaining how to make those in another wiki page).</p>
+                    
+                    <p>A machine might need more than just its controller block and some specific blocks. 
+                        Input and Output Buses for Items, Input and Output Hatches for fluids and an Energy Hatch to supply power are essential to interact with the machine as a whole in any way and are used to input items or fluids for specific recipes, 
+                        provide power to run those recipes and then collect/drain items/fluids from the outputs after the recipe has been completed.</p>
+                    
+                    <p>Including possible positions in your machine-complex for said Input/Output Buses/Hatches and Energy Hatches is required if you want to register recipes that require said inputs/outputs. 
+                        For example, you can hardly have a recipe for a machine that requires 1 item as input, but the machine doesn't have any position where you could place a input bus to actually input any items. 
+                        Same goes for the output bus; 
+                        If you have recipes that produce items and you don't have an output bus on your machine, it can't process it because it has no place to output the items to. 
+                        Same goes if (all) output bus(es) are full.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
