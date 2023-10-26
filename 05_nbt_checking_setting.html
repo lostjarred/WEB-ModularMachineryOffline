@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NBT Checking & Setting - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/6.-Custom-Machines:-NBT-Checking-&-Setting-%5BAdvanced%5D">https://github.com/HellFirePvP/ModularMachinery/wiki/6.-Custom-Machines:-NBT-Checking-&-Setting-%5BAdvanced%5D</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: NBT Checking & Setting [Advanced]</h2>
+                    <p>NBT Tags, if present, 
+                        hold significant information about an item that you might need to check against when using an item as input OR set a specific NBT tag on an item output. 
+                        NBT Tags can be insanely complex and recursive. 
+                        Maybe you just need to check if a specific value is present or if a number in the NBT tag is inside a specific range. 
+                        So most of the tag might be unnecessary to check at all.</p>
+                    <p><span class="bold">Checking or setting the NBT-tag is not always visible to the user!</span> So keep that in mind when thinking about complex checks that are not obvious.</p>
+                    <p>You can get the nbt-tag of the itemstack you're currently holding with /mm-hand. The message sent back to you in chat will also be copied to your clipboard (if possible) in the expected JSON format.</p>
+                    <p>NBT checks are lazy-checks so the mod will only check if the NBT data you specified is at least present/acceptable. The mod ignores additional tags/entries on the itemstack. 
+                        The NBT-tag to check is defined as JSON in an item input/output definition with the tag "nbt" (examples down below).</p>
+                    <p>When defining a String in the NBT tag you can also define it as a <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular expression</a> instead of just the plain string you want to match against. 
+                        (Be careful what you define here, as it is not only used to match the string against the string on the itemstack, 
+                        but also set on the itemstack for the preview in JEI!)</p>
+                    <p>When defining a number in the NBT tag you can prefix that number directly with "&lt;", "&lt=", "==", "=&gt" or "&gt" so you're not directly checking if the number specified is equal to the number on the itemstack, 
+                        but is less, less & equal, equal, greater & equal or greater than the number on the itemstack.</p>
+                    <p>The NBT-tag defined in an input, eventhough it is meant for checking/matching the NBT-tag or values in it against a potential input item, 
+                        is also applied to the itemstack directly when the preview for JEI is built. 
+                        In order to use regular expressions when matching strings AND have the preview in JEI not mess up, you can define additionally for item inputs a 'nbt-display' entry alongside 'nbt' - there you can remove all the NBT-checks like regular expressions since that NBT-tag will be preferred over 'nbt' when applying the NBT-tag to the itemstack for the recipe-preview in JEI.</p>
+                    <p>Example #1:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "type": "item",
+                                "io-type": "input",
+                                "item": "forge:bucketfilled",
+                                "amount": 1,
+                                "nbt": {
+                                    "FluidName": "ic2uu_matter",
+                                    "Amount": ">=1000"
+                                }
+                            },
+                            [...]
+                        </p>
+                    </div>
+                    <p>The input will only be successful if the item is a forge bucket with 1000 or more mb of 'ic2uu_matter' in it.</p>
+                    <p>Example #2:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "type": "item",
+                                "io-type": "input",
+                                "item": "forge:bucketfilled",
+                                "amount": 1,
+                                "nbt": {
+                                    "FluidName": "^.*water.*$",
+                                    "Amount": "1000"
+                                }
+                            },
+                            [...]
+                        </p>
+                    </div>
+                    <p>This will now only accept if the item in question is a forge-bucket with exactly 1000mb of some fluid that contains 'water' in its name. Defining neither one of the number-comparison methods (&lt, &lt=, ==, &gt=, &gt) means it'll always mean the same as an exact-match (==). 
+                        However, Defining "^.water.$" as FluidName will also set that as FluidName for JEI recipe previews, 
+                        which will (not surprisingly) mess up the rendering. See the last few sentences above the 1st example for more information on how to avoid that.</p>
+                    <p>Example #3:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "type": "item",
+                                "io-type": "input",
+                                "item": "forge:bucketfilled",
+                                "amount": 1,
+                                "nbt": {
+                                    "SomeWeirdTagName": {
+                                        "SomeWeirdNumber": ">5000",
+                                        "SomeWeirdList": [
+                                            "AListEntry"
+                                        ]
+                                    }
+                                }
+                            },
+                            [...]
+                        </p>
+                    </div>
+                    <p>This kind of NBT matching can be applied as deep and complex as it needs to be. 
+                        For the item in Example #3 to be accepted, it needs to be a forge-bucket, 
+                        has to have a NBTTagCompound at 'SomeWeirdTagName'. 
+                        In that NBTTagCompound there needs to be a integer number at the key 'SomeWeirdNumber' which has to be bigger than 5000. 
+                        Additionally, there needs to be a String-List at key 'SomeWeirdList' that has at least 1 entry which is called 'AListEntry'.</p>
+                    <p>Example #4:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "type": "item",
+                                "io-type": "output",
+                                "item": "forge:bucketfilled",
+                                "amount": 1,
+                                "nbt": {
+                                    "FluidName": "ic2uu_matter",
+                                    "Amount": "1000"
+                                }
+                            },
+                            [...]
+                        </p>
+                    </div>
+                    <p>The output is more straight-forward since there is no matching being done, 
+                        only setting the NBT-tag. So whatever you define in the 'nbt' in the item output will be applied to the output stack.</p>
+                    <p>You can however not only apply NBT-checks to itemstack inputs, 
+                        but also to TileEntities that are part of your structure, 
+                        so you can ask for specifically a spider-spawner for example. 
+                        The NBT-tag to check against has to be defined alongside the coordinates for a specific position. 
+                        The NBT-Tag will be matched against the TileEntity's NBT-tag, 
+                        equal to the one it'd save into a chunk when saving & loading the world. 
+                        The NBT-tag follows the same syntax & options as the item-input's NBT-check.</p>
+                    <p>Example #1:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "x": 1,
+                                "y": 1,
+                                "z": 1,
+                                "nbt": {
+                                    ...
+                                },
+                                "elements": [
+                                    ...
+                                ]
+                            }
+                            [...]
+                        </p>
+                    </div>
+                    <p>If something is unclear - since this indeed can be complex - you can also ask on AstralSorcery/ModularMachinery's discord: </p>
+                        <a href="https://discord.gg/q37VRcT">Discord-Invite-Link</a>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
