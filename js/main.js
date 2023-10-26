@@ -11,6 +11,7 @@
         menu = menu + addmenubutton("home", "index.html")
         menu = menu + addmenubutton("1. Keynotes", "00_keynotes.html")
         menu = menu + addmenubutton("2. Machine format", "01_machine_format.html")
+        menu = menu + addmenubutton("3. Custom Machines: Variables", "02_variables.html")
         menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }
