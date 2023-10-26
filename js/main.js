@@ -16,6 +16,7 @@
         menu = menu + addmenubutton("5. Custom Machines: Recipe Adapters", "04_recipe_adapters.html")
         menu = menu + addmenubutton("6. Custom Machines: NBT Checking & Setting [Advanced]", "05_nbt_checking_setting.html")
         menu = menu + addmenubutton("7. Custom Machines: Recipe Sorting", "06_recipe_sorting.html")
+        menu = menu + addmenubutton("8. Custom Machines: Machine Format Position Permutations [Advanced]", "07_machine_format_postition_permutations.html")
         menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }

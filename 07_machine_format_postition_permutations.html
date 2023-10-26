@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Machine Format Position Permutations - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/8.-Custom-Machines:-Machine-Format---Position-Permutations-%5BAdvanced%5D">https://github.com/HellFirePvP/ModularMachinery/wiki/8.-Custom-Machines:-Machine-Format---Position-Permutations-%5BAdvanced%5D</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Machine Format Position Permutations [Advanced]</h2>
+                    <p>As described and shown at the end of the <a href="01_machine_format.html">Machine Format</a> wiki page, 
+                        the block-pattern definition for the machine can be very clunky. To help combat that, 
+                        you can define arrays of positions and the mod will build all permutations over those.</p>
+                    <p>Example from the Machine format page: One part of the block-pattern, the lowest layer, had the following positions:</p>
+                    <p>[1, -1, 2], [0, -1, 2], [-1, -1, 2], [1, -1, 1], [0, -1, 1], [-1, -1, 1], [1, -1, 0], [0, -1, 0], [-1, -1, 0]</p>
+                    <p>Now those describe essentially the 3x3 lower "floor" of the machine. y is always -1, 
+                        x ranges from 1 to -1, 
+                        z ranges from 2 to 0. 
+                        Instead of writing entries for all those positions, you can also write:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "x": [1, 0, -1],
+                                "y": -1,
+                                "z": [2, 1, 0],
+                                "elements": [
+                                    "modularmachinery:blockcasing",
+                                    "modularmachinery:blockinputitem",
+                                    "modularmachinery:blockinputenergy",
+                                    "modularmachinery:blockoutputitem",
+                                    "modularmachinery:blockoutputfluid"
+                                ]
+                            }
+                            [...]
+                        </p>
+                    </div>
+                    <p>The mod will build all possible combinations of all coordinates given. 
+                        So instead of writing 9 entries, you can also just write 1 in this example.</p>
+                    <p>Let's have another example:</p>
+                    <p>[1, 0, 2], [-1, 0, 2], [1, 0, 0], [-1, 0, 0], [1, 1, 2], [-1, 1, 2], [1, 1, 0], [-1, 1, 0]</p>
+                    <p>Now this follows a similiar pattern: x is either 1 or -1, z is either 0 or 2, and y is either 0 or 1. 
+                        All possible combinations/permutations of those are listed above, so you can just write them as follows:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            {
+                                "x": [1, -1],
+                                "y": [0, 1],
+                                "z": [0, 2],
+                                "elements": [
+                                    ...
+                                ]
+                            }
+                            [...]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
