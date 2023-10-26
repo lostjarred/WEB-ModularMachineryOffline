@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Structure To JSON Tool - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/10.-Custom-Machines:-Structure-To-JSON-Tool-%5BAdvanced%5D">https://github.com/HellFirePvP/ModularMachinery/wiki/10.-Custom-Machines:-Structure-To-JSON-Tool-%5BAdvanced%5D</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Structure To JSON Tool [Advanced]</h2>
+                    <p>(Marked as "Advanced" because you should know how defining machines manually works, since post-processing after exporting it to JSON is strongly advised.)</p>
+                    <p>Writing up the JSON for a complex machine manually is a massive time sink and even then it's littered with wrong positions or typos or other potential issues. 
+                        In order to avoid that, ModularMachinery adds the "Construct Selection Tool", 
+                        which allows a player (when opped and in creative) to select blocks with it and export them as JSON.</p>
+                    <p>While in hand, 
+                        you can with rightlick (or shift-rightclick to avoid rightclick-interactions with certain blocks) on blocks to add them to the current selection, 
+                        or to remove them from the selection. Once selected, 
+                        these blocks will show up with a white cube-overlay, 
+                        indicating that the position where the block is/was at, was added to your selection. 
+                        You can break the block or place another one in it in order to add something like fluid-blocks (which are normally not right-clickable of course) to the machine-selection.</p>
+                    <p>Once you've selected all blocks you want to add to the structure/machine, 
+                        you have to rightclick the Machine Controller to "confirm" your selection. 
+                        <span class="bold">The direction in which the controller is facing is very important! Wherever the controller faces towards will be considered the "front"-face of your machine.</span> 
+                        So be sure to have the controller face the proper direction before shift-rightclicking it with the selection too</p>
+                    <p>After that, 
+                        if everything works out successfully, 
+                        the machine is saved as "machine--.json" into your 'machinery' directory where the other machines are defined. 
+                        Additionally, your current selection gets purged after that to avoid double-creation or accidentally forgetting to un-select all positions.</p>
+                    <p>Now, 
+                        post-processing needs to be done, 
+                        as the mod only saves that 1 specific block + its found state, 
+                        serialized as metadata, 
+                        into the json file per position. 
+                        If the block at the positon had a tileentity, 
+                        its data will be serialized and saved in the 'nbt'-tag of the position it would need to be at. 
+                        Unless you want to match against certain entries in this NBT-tag, 
+                        it's advised to remove the 'nbt'-specification entirely. 
+                        Adjust the fitting elements per position appropiately to what's reasonable or appropiate for the given machine. 
+                        (For example allow for stairs that are at corners the metadata for both potential rotations that'd form corner-stairs, so users don't run into the issue that it looks 100% fine, but it has the wrong metadata!)</p>
+                    <p>The JSON for that exported machine also only comes with the "parts"-tag, 
+                        defining only the raw structure, 
+                        so adding a "registryname" and "localizedname" and so on is required.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>

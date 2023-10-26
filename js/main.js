@@ -18,6 +18,7 @@
         menu = menu + addmenubutton("7. Custom Machines: Recipe Sorting", "06_recipe_sorting.html")
         menu = menu + addmenubutton("8. Custom Machines: Machine Format Position Permutations [Advanced]", "07_machine_format_postition_permutations.html")
         menu = menu + addmenubutton("9. Custom Machines: Machine Colors", "08_machine_colors.html")
+        menu = menu + addmenubutton("10. Custom Machines: Structure To JSON Tool [Advanced]", "09_structure_to_json_tool.html")
         menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }
