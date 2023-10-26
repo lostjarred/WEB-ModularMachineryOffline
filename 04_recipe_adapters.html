@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipe Adapters - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/4.-Custom-Machines:-Machine-Recipes">https://github.com/HellFirePvP/ModularMachinery/wiki/4.-Custom-Machines:-Machine-Recipes</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Recipe Adapters</h2>
+                    <p>While writing up new machines and recipes is fine and all, 
+                        you might want to import recipes from furnaces or related - That's what adapters are for. 
+                        They convert recipes from given/defined recipes/machines and convert them over into a format ModularMachinery understands and adds them to the recipe pool of a given machine.</p>
+                    <p>At the moment, adapters are still pretty primitive and non-customizable, but that's going to change. (at least i have plans for that...)</p>
+                    <p>Currently available adapters:</p>
+                    <ul>
+                        <li>(v1.0+)"<span class="bold">minecraft:furnace</span>" (Will convert all furnace recipes into ModularMachinery recipes, duration 120 ticks at 20 FE/t)</li>
+                        <li>(v1.9.6+) <span class="bold">Every defined machine</span> (its registry name) can be specified as adapter, 
+                            so you can import recipes from one machine into another (Recipes will be identical unless modified by recipe modifiers, 
+                            explained down below). Machines created with modular machinery jsons will always be in the 'modularmachinery' namespace.</li>
+                    </ul>
+                    <p>The syntax for the moment (v. 1.0) is as follows:</p>
+                    <div class="codesection">
+                        <p>
+                            {
+                                "machine": "machineregistryname",
+                                "adapter": "minecraft:furnace"
+                            }
+                        </p>
+                    </div>
+                    <p>Adapters must be defined in the same directory as recipes and have to have a file ending of <span class="bold">.adapter.json</span> !</p>
+                    <hr>
+                    <p>From version 1.9.6 and newer versions, modifiers can be applied to each recipe imported through the adapter. 
+                        This can - as explained in <a href="">13. Recipe Modifiers [Advanced]</a> - modify all potential requirements of a recipe, e.g. energy, item, duration, ...</p>
+                    <div class="codesection">
+                        <p>
+                            {
+                                "machine": "alloy_furnace",
+                                "adapter": "minecraft:furnace",
+                                "modifiers": [
+                                    {
+                                        "io": "output",
+                                        "target": "item",
+                                        "operation": 1,
+                                        "multiplier": 2.0
+                                    },
+                                    {
+                                        "io": "input",
+                                        "target": "duration",
+                                        "operation": 1,
+                                        "multiplier": 0.5
+                                    }
+                                ]
+                            }
+                        </p>
+                    </div>
+                    <p>In this example of an adapter.json, 
+                        the adapter imports all recipes from 'minecraft:furnace' and will modify them so they will produce double the output (operation 1 = multiply; multiplier 2 = result amount * 2).</p>
+                    <p>
+                        So one can optionally specify a "modifiers" tag in the .adapter.json, which is required to be a list/array of modifier objects. See the wiki page for recipe modifiers for further information.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
