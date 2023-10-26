@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipe Sorting - Modular Machinery Offline Reference</title>
+        <link href="css/site.css" rel="stylesheet">
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+        <div class="main">
+            <div id="menu-div" class="menu">
+                <h3>MENU</h3>
+                <hr>
+                <ul>
+                    <li>Javascript required, please enable javascript</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div id="header-div" class="header">
+                    <h1>Javascript required, please enable javascript</h1>
+                </div>
+                <div class="contentbox">
+                    <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/7.-Custom-Machines:-Recipe-Sorting">https://github.com/HellFirePvP/ModularMachinery/wiki/7.-Custom-Machines:-Recipe-Sorting</a> </p>
+                </div>
+                <div class="contentbox">
+                    <h2>Custom Machines: Recipe Sorting</h2>
+                    <p>You might want to add a recipe for a machine that (for example) take 1 coal + energy and output 1 iron. 
+                        Now you want to "reward" the user for providing lava as fluid input and you define 1 coal + 1 bucket of lava + energy outputs 4 iron.</p>
+                    <p>The problem arises that if the user provides coal + lava + energy, 
+                        the machine checks the recipe that takes 1 coal + energy => 1 iron first and it of course all input components of that are present & useable, 
+                        so it'll select that recipe and produce 1 iron instead of consuming the additional lava and produce 3 more iron of that piece of coal.</p>
+                    <p>By default, the mod will sort recipes by the amount & type of input-components needed. 
+                        So for example a recipe-selection failure like the one explained above would not even happen by default, 
+                        however you can still run into this problem occasionally.</p>
+                    <p>Now how to prevent this? Defining a priority for these kinds of recipes. 
+                        That way you can give the mod a hint which recipes to select/check first and which afterwards. 
+                        Higher priorities get checked first, lower priorities afterwards. 
+                        (The order at which the mod checks the recipes is identical to the order they show up in JEI!)</p>
+                    <p>Example:</p>
+                    <div class="codesection">
+                        <p>
+                            [...]
+                            "machine": "...",
+                            "registryName": "...",
+                            "recipeTime": 20,
+                            "priority": 2,
+                            "requirements": [
+                            [...]
+                        </p>
+                    </div>
+                    <p>As shown in the example, 
+                        the sorting-priority can be defined as integer-number in 'priority'. 
+                        The priority definition is optional. If no priority is defined, 
+                        the priority is 0.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        genmenu()
+        genheader()
+    </script>
+</html>
