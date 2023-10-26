@@ -92,7 +92,7 @@ p.menubutton {
     border-bottom: 2px solid red;
 }
 
-.codesection >p {
+.codesection > p {
     white-space: pre;
 }
 
@@ -123,4 +123,13 @@ th:last-child  {
 
 .bold {
     font-weight: bold;
+}
+
+.imagebox {
+    border: 2px solid red;
+}
+
+.imagebox > img {
+    max-width: 100%;
+    height: auto;
 }
