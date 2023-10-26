@@ -21,6 +21,7 @@
         menu = menu + addmenubutton("10. Custom Machines: Structure To JSON Tool [Advanced]", "09_structure_to_json_tool.html")
         menu = menu + addmenubutton("11. Custom Machines: Furnace Fuel as Item Input", "010_furnace_fuel_as_item_input.html")
         menu = menu + addmenubutton("12. Crafttweaker Recipe definitions [Advanced]", "011_craftweaker_recipe_definitions.html")
+        menu = menu + addmenubutton("13. Recipe Modifiers [Advanced]", "012_recipe_modifiers.html")
         menu = menu + "</ul>"
         menuelement.innerHTML = menu
     }
