@@ -88,7 +88,6 @@ p.menubutton {
 .codesection >h4 {
     width: 100%;
     margin: 0%;
-    padding: 0%;
     border-bottom: 2px solid red;
 }
 
@@ -102,6 +101,7 @@ p.menubutton {
 .codesection > p {
     white-space: pre;
     margin: 0%;
+    padding: 1%;
 }
 
 .codehighlight {
