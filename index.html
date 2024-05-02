@@ -1,53 +1,48 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>Home - Modular Machinery Offline Reference</title>
-        <link href="css/site.css" rel="stylesheet">
-        <script src="js/main.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/site.css" rel="stylesheet">
+        <link href="./css/colouramber.css" rel="stylesheet">
+        <link href="./css/font.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
-    
     <body>
-        <div class="main">
-            <div id="menu-div" class="menu">
-                <h3>MENU</h3>
-                <hr>
-                <ul>
-                    <li>Javascript required, please enable javascript</li>
+        <div class="row border" id="main">
+            <div class="col border border-right menu">
+                <h2>MENU</h2>
+                <ul class="menu">
+                    <li> <a href=".\index.html" class="link">\Home</a> </li>
                 </ul>
             </div>
-            <div class="content">
-                <div id="header-div" class="header">
-                    <h1>Javascript required, please enable javascript</h1>
+            <div class="col">
+                <div class="col">
+                    <h1 class="border border-bottom">Modular Machinery - Home</h1>
                 </div>
-                <div class="contentbox">
+                <div class="row">
                     <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki">https://github.com/HellFirePvP/ModularMachinery/wiki</a> </p>
                 </div>
-                <div class="contentbox">
-                    <h2>Home</h2>
+                <div class="col">
                     <p>This wiki does/will include information on how to define custom machines, variables to use in those definitions and recipes, as well as what they can include and what they can't (yet).</p>
                     <p>Keep in mind to update ModularMachinery as there might be documentation for functionality that is only available in the more recent versions.</p>
-                    <ol>
-                        <li><a href="00_keynotes.html">Custom Machines: Important notes</a></li>
-                        <li><a href="01_machine_format.html">Custom Machines: Machine format</a></li>
-                        <li><a href="02_variables.html">Custom Machines: Variables</a></li>
-                        <li><a href="03_machine_recipes.html">Custom Machines: Recipes</a></li>
-                        <li><a href="04_recipe_adapters.html">Custom Machines: Recipe Adapters</a></li>
-                        <li><a href="05_nbt_checking_setting.html">Custom Machines: NBT Checking & Setting [Advanced]</a></li>
-                        <li><a href="06_recipe_sorting.html">Custom Machines: Recipe Sorting</a></li>
-                        <li><a href="07_machine_format_postition_permutations.html">Custom Machines: Machine Format Position Permutations [Advanced]</a></li>
-                        <li><a href="08_machine_colors.html">Custom Machines: Machine Colors</a></li>
-                        <li><a href="09_structure_to_json_tool.html">Custom Machines: Structure To JSON Tool [Advanced]</a></li>
-                        <li><a href="010_furnace_fuel_as_item_input.html">Custom Machines: Furnace Fuel as Item-Input</a></li>
-                        <li><a href="011_craftweaker_recipe_definitions.html">Custom Machines: Crafttweaker Recipe definitions [Advanced]</a></li>
-                        <li><a href="012_recipe_modifiers.html">Custom Machines: Recipe Modifiers [Advanced]</a></li>
-                    </ol>
+                    <div>
+                    <ul class="menu">
+                        <li><a href="">Custom Machines: Important notes</a></li>
+                        <li><a href="">Custom Machines: Machine format</a></li>
+                        <li><a href="">Custom Machines: Variables</a></li>
+                        <li><a href="">Custom Machines: Recipes</a></li>
+                        <li><a href="">Custom Machines: Recipe Adapters</a></li>
+                        <li><a href="">Custom Machines: NBT Checking & Setting [Advanced]</a></li>
+                        <li><a href="">Custom Machines: Recipe Sorting</a></li>
+                        <li><a href="">Custom Machines: Machine Format Position Permutations [Advanced]</a></li>
+                        <li><a href="">Custom Machines: Machine Colors</a></li>
+                        <li><a href="">Custom Machines: Structure To JSON Tool [Advanced]</a></li>
+                        <li><a href="">Custom Machines: Furnace Fuel as Item-Input</a></li>
+                        <li><a href="">Custom Machines: Crafttweaker Recipe definitions [Advanced]</a></li>
+                        <li><a href="">Custom Machines: Recipe Modifiers [Advanced]</a></li>
+                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
-    <script>
-        genmenu()
-        genheader()
-    </script>
 </html>
