@@ -61,6 +61,7 @@ div.menu {
 }
 div.code {
     border: 2px black solid;
+    margin: 1%;
 }
 pre.code {
     width: 100%; 
