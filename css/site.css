@@ -60,7 +60,7 @@ div.menu {
     flex-basis: 10%;
 }
 div.code {
-    border: 2px black solid;
+    border: 3px black solid;
     margin: 1%;
 }
 pre.code {
