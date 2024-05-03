@@ -59,6 +59,13 @@ div.menu {
     flex-shrink: 0; 
     flex-basis: 10%;
 }
+div.code {
+    border: 2px black solid;
+}
+pre.code {
+    width: 100%; 
+    white-space: pre-wrap;
+}
 img.pixel {
     image-rendering: pixelated;
 }
