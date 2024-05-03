@@ -1,30 +1,27 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>Variables - Modular Machinery Offline Reference</title>
-        <link href="css/site.css" rel="stylesheet">
-        <script src="js/main.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/site.css" rel="stylesheet">
+        <link href="./css/colouramber.css" rel="stylesheet">
+        <link href="./css/font.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
-    
     <body>
-        <div class="main">
-            <div id="menu-div" class="menu">
-                <h3>MENU</h3>
-                <hr>
-                <ul>
-                    <li>Javascript required, please enable javascript</li>
+        <div class="row border" id="main">
+            <div class="col border border-right menu">
+                <h2>MENU</h2>
+                <ul class="menu">
+                    <li> <a href=".\index.html" class="link">\Home</a> </li>
                 </ul>
             </div>
-            <div class="content">
-                <div id="header-div" class="header">
-                    <h1>Javascript required, please enable javascript</h1>
+            <div class="col">
+                <div class="col">
+                    <h1 class="border border-bottom">Custom Machines: Variables</h1>
                 </div>
-                <div class="contentbox">
+                <div class="row">
                     <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/3.-Custom-Machines:-Variables">https://github.com/HellFirePvP/ModularMachinery/wiki/3.-Custom-Machines:-Variables</a> </p>
                 </div>
-                <div class="contentbox">
-                    <h2>Custom Machines: Variables</h2>
+                <div class="col">
                     <p>As shown at the end of the <a href="01_machine_format.html">previous page</a> of the wiki, 
                         machine definitions can be extremly long and especially when a lot of blockstates are potentially allowed for a specific position, 
                         it can get messy and contain a lot of cuplicates since most parts then only differ at their position, 
@@ -38,54 +35,47 @@
                         so define your variables with a unique name. Variable files have to end with <span class="bold">.var.json</span> instead of just .json. 
                         They have to be in the same folder as the machine jsons and are loaded before any of the machines are.</p>
                     <p>Example of a variable: The centrifuge 'casings' on the bottom layer of the example of the previous page:</p>
-                    <div class="codesection">
-                        <p>
-                            {
-                                "x": 1,
-                                "y": -1,
-                                "z": 2,
-                                "elements": [
-                                    "modularmachinery:blockcasing",
-                                    "modularmachinery:blockinputitem",
-                                    "modularmachinery:blockinputenergy",
-                                    "modularmachinery:blockoutputitem",
-                                    "modularmachinery:blockoutputfluid"
-                                ]
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+{
+    "x": 1,
+    "y": -1,
+    "z": 2,
+    "elements": [
+        "modularmachinery:blockcasing",
+        "modularmachinery:blockinputitem",
+        "modularmachinery:blockinputenergy",
+        "modularmachinery:blockoutputitem",
+        "modularmachinery:blockoutputfluid"
+    ]
+}</pre>
                     </div>
                     <p>A variable file (let's call it "variables.var.json") would look like this:</p>
-                    <div class="codesection">
-                        <p>
-                            {
-                                "iron_centrifuge_casing": [
-                                    "modularmachinery:blockcasing",
-                                    "modularmachinery:blockinputitem",
-                                    "modularmachinery:blockinputenergy",
-                                    "modularmachinery:blockoutputitem",
-                                    "modularmachinery:blockoutputfluid"
-                                ]
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+{
+    "iron_centrifuge_casing": [
+        "modularmachinery:blockcasing",
+        "modularmachinery:blockinputitem",
+        "modularmachinery:blockinputenergy",
+        "modularmachinery:blockoutputitem",
+        "modularmachinery:blockoutputfluid"
+    ]
+}</pre>
                     </div>
                     <p>You can of course define multiple variables in the same variable-json file just by separating them with a comma. Variables cannot contain other variables in their list of applicable blockstates.</p>
                     <p>You can after defining this variable use it to make your machine jsons smaller:</p>
-                    <div class="codesection">
-                        <p>
-                            {
-                                "x": 1,
-                                "y": -1,
-                                "z": 2,
-                                "elements": "iron_centrifuge_casing"
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+{
+    "x": 1,
+    "y": -1,
+    "z": 2,
+    "elements": "iron_centrifuge_casing"
+}</pre>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-    <script>
-        genmenu()
-        genheader()
-    </script>
 </html>
