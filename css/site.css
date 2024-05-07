@@ -83,6 +83,9 @@ ul.menu {
 h4.border.border.border-bottom {
     border-bottom: 1px solid;
 }
+span.bold {
+    font-weight: bold;
+}
 @media screen and (min-width: 900px) {
     #main {
         margin-left: 10%; 
