@@ -1,30 +1,27 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>Recipe Adapters - Modular Machinery Offline Reference</title>
-        <link href="css/site.css" rel="stylesheet">
-        <script src="js/main.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/site.css" rel="stylesheet">
+        <link href="./css/colouramber.css" rel="stylesheet">
+        <link href="./css/font.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
-    
     <body>
-        <div class="main">
-            <div id="menu-div" class="menu">
-                <h3>MENU</h3>
-                <hr>
-                <ul>
-                    <li>Javascript required, please enable javascript</li>
+        <div class="row border" id="main">
+            <div class="col border border-right menu">
+                <h2>MENU</h2>
+                <ul class="menu">
+                    <li> <a href=".\index.html" class="link">\Home</a> </li>
                 </ul>
             </div>
-            <div class="content">
-                <div id="header-div" class="header">
-                    <h1>Javascript required, please enable javascript</h1>
+            <div class="col">
+                <div class="col">
+                    <h1 class="border border-bottom">Custom Machines: Recipe Adapters</h1>
                 </div>
-                <div class="contentbox">
+                <div class="row">
                     <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/5.-Custom-Machines:-Recipe-Adapters">https://github.com/HellFirePvP/ModularMachinery/wiki/5.-Custom-Machines:-Recipe-Adapters</a> </p>
                 </div>
-                <div class="contentbox">
-                    <h2>Custom Machines: Recipe Adapters</h2>
+                <div class="col">
                     <p>While writing up new machines and recipes is fine and all, 
                         you might want to import recipes from furnaces or related - That's what adapters are for. 
                         They convert recipes from given/defined recipes/machines and convert them over into a format ModularMachinery understands and adds them to the recipe pool of a given machine.</p>
@@ -37,51 +34,40 @@
                             explained down below). Machines created with modular machinery jsons will always be in the 'modularmachinery' namespace.</li>
                     </ul>
                     <p>The syntax for the moment (v. 1.0) is as follows:</p>
-                    <div class="codesection">
-                        <p>
-                            {
-                                "machine": "machineregistryname",
-                                "adapter": "minecraft:furnace"
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">{
+    "machine": "machineregistryname",
+    "adapter": "minecraft:furnace"
+}</pre>
                     </div>
-                    <p>Adapters must be defined in the same directory as recipes and have to have a file ending of <span class="bold">.adapter.json</span> !</p>
-                    <hr>
+                    <p class="border border-bottom">Adapters must be defined in the same directory as recipes and have to have a file ending of <span class="bold">.adapter.json</span> !</p>
                     <p>From version 1.9.6 and newer versions, modifiers can be applied to each recipe imported through the adapter. 
                         This can - as explained in <a href="012_recipe_modifiers.html">13. Recipe Modifiers [Advanced]</a> - modify all potential requirements of a recipe, e.g. energy, item, duration, ...</p>
-                    <div class="codesection">
-                        <p>
-                            {
-                                "machine": "alloy_furnace",
-                                "adapter": "minecraft:furnace",
-                                "modifiers": [
-                                    {
-                                        "io": "output",
-                                        "target": "item",
-                                        "operation": 1,
-                                        "multiplier": 2.0
-                                    },
-                                    {
-                                        "io": "input",
-                                        "target": "duration",
-                                        "operation": 1,
-                                        "multiplier": 0.5
-                                    }
-                                ]
-                            }
-                        </p>
+                        <div class="code">
+                            <pre class="code">{
+    "machine": "alloy_furnace",
+    "adapter": "minecraft:furnace",
+    "modifiers": [
+        {
+            "io": "output",
+            "target": "item",
+            "operation": 1,
+            "multiplier": 2.0
+        },
+        {
+            "io": "input",
+            "target": "duration",
+            "operation": 1,
+            "multiplier": 0.5
+        }
+    ]
+}</pre>
                     </div>
                     <p>In this example of an adapter.json, 
                         the adapter imports all recipes from 'minecraft:furnace' and will modify them so they will produce double the output (operation 1 = multiply; multiplier 2 = result amount * 2).</p>
-                    <p>
-                        So one can optionally specify a "modifiers" tag in the .adapter.json, which is required to be a list/array of modifier objects. See the wiki page for recipe modifiers for further information.
-                    </p>
+                    <p>So one can optionally specify a "modifiers" tag in the .adapter.json, which is required to be a list/array of modifier objects. See the wiki page for recipe modifiers for further information.</p>
                 </div>
             </div>
         </div>
     </body>
-    <script>
-        genmenu()
-        genheader()
-    </script>
 </html>
