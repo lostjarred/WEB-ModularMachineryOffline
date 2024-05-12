@@ -26,3 +26,7 @@ div.code {
 pre.code {
     color: #282828;
 }
+span.code {
+    background-color: #FFCC00;
+    color: #282828
+}
