@@ -1,38 +1,37 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>Crafttweaker Recipe definitions - Modular Machinery Offline Reference</title>
-        <link href="css/site.css" rel="stylesheet">
-        <script src="js/main.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/site.css" rel="stylesheet">
+        <link href="./css/colouramber.css" rel="stylesheet">
+        <link href="./css/font.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
-    
     <body>
-        <div class="main">
-            <div id="menu-div" class="menu">
-                <h3>MENU</h3>
-                <hr>
-                <ul>
-                    <li>Javascript required, please enable javascript</li>
+        <div class="row border" id="main">
+            <div class="col border border-right menu">
+                <h2>MENU</h2>
+                <ul class="menu">
+                    <li> <a href=".\index.html" class="link">\Home</a> </li>
                 </ul>
             </div>
-            <div class="content">
-                <div id="header-div" class="header">
-                    <h1>Javascript required, please enable javascript</h1>
+            <div class="col">
+                <div class="col">
+                    <h1 class="border border-bottom">Crafttweaker Recipe definitions [Advanced]</h1>
                 </div>
-                <div class="contentbox">
+                <div class="row">
                     <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/12.-Crafttweaker-Recipe-definitions-%5BAdvanced%5D">https://github.com/HellFirePvP/ModularMachinery/wiki/12.-Crafttweaker-Recipe-definitions-%5BAdvanced%5D</a> </p>
                 </div>
-                <div class="contentbox">
-                    <h2>Crafttweaker Recipe definitions [Advanced]</h2>
+                <div class="col">
                     <p>So while writing up recipes in JSON is the 'default' way of adding recipes to machines in ModularMachinery, 
                         starting from Version 1.8.1 and newer, 
                         one can add recipes to machines using Crafttweaker. 
                         In the end, the same goals can be achieved, 
                         except some features, like defining matching & display NBT-tags for item requirements and the option to define range-checks in such checks (so it would 'pass' the test if some Integer value is >= 1000 or something), 
-                        are not available.</p>
+                        are not available.
+                    </p>
                     <p>Starting the recipe-add process can be done with <a href="https://github.com/HellFirePvP/ModularMachinery/blob/master/src/main/java/hellfirepvp/modularmachinery/common/integration/crafttweaker/RecipeBuilder.java">the RecipeBuilder class</a>: 
-                        <span class="codehighlight">mods.modularmachinery.RecipeBuilder.newBuilder("recipeName", "machineName", 100) ...</span></p>
+                        <span class="code">mods.modularmachinery.RecipeBuilder.newBuilder("recipeName", "machineName", 100) ...</span>
+                    </p>
                     <p>This returns a RecipePrimer object where further operations can be done on the recipe, 
                         such as adding required inputs and adding outputs. A list of available methods can be found in <a href="https://github.com/HellFirePvP/ModularMachinery/blob/master/src/main/java/hellfirepvp/modularmachinery/common/integration/crafttweaker/RecipePrimer.java">the RecipePrimer class</a>.</p>
                     <p>For a more detailed explanantion on this, please also check <a href="https://docs.blamejared.com/1.12/en/Mods/ModularMachinery/ModularMachinery">the Crafttweaker documentation on ModularMachinery</a>.</p>
@@ -40,8 +39,4 @@
             </div>
         </div>
     </body>
-    <script>
-        genmenu()
-        genheader()
-    </script>
 </html>
