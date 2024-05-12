@@ -1,131 +1,132 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>Recipe Modifiers - Modular Machinery Offline Reference</title>
-        <link href="css/site.css" rel="stylesheet">
-        <script src="js/main.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/site.css" rel="stylesheet">
+        <link href="./css/colouramber.css" rel="stylesheet">
+        <link href="./css/font.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
-    
     <body>
-        <div class="main">
-            <div id="menu-div" class="menu">
-                <h3>MENU</h3>
-                <hr>
-                <ul>
-                    <li>Javascript required, please enable javascript</li>
+        <div class="row border" id="main">
+            <div class="col border border-right menu">
+                <h2>MENU</h2>
+                <ul class="menu">
+                    <li> <a href=".\index.html" class="link">\Home</a> </li>
                 </ul>
             </div>
-            <div class="content">
-                <div id="header-div" class="header">
-                    <h1>Javascript required, please enable javascript</h1>
+            <div class="col">
+                <div class="col">
+                    <h1 class="border border-bottom">Recipe Modifiers [Advanced]</h1>
                 </div>
-                <div class="contentbox">
+                <div class="row">
                     <p>From <a href="https://github.com/HellFirePvP/ModularMachinery/wiki/13.-Recipe-Modifiers-%5BAdvanced%5D">https://github.com/HellFirePvP/ModularMachinery/wiki/13.-Recipe-Modifiers-%5BAdvanced%5D</a> </p>
                 </div>
-                <div class="contentbox">
-                    <h2>Recipe Modifiers [Advanced]</h2>
+                <div class="col">
                     <p>[Feature added in ModularMachinery version 1.9+]</p>
                     <p>As it stands now, a machine can only be built, 
                         have its recipes be done and that's it. 
                         However, one might want to open up possibilities for the user to "upgrade" the machine to provide more "Secondary output", 
-                        more energy output, lower chance of consuming input, take less time to do a recipe, [and so on].</p>
+                        more energy output, lower chance of consuming input, take less time to do a recipe, [and so on].
+                    </p>
                     <p>The core idea behind recipe modifiers is as follows: 'Instead of placing block "X" at position "x, y, z", 
-                        you can instead place block "Y" there and gain to your recipes.'</p>
+                        you can instead place block "Y" there and gain to your recipes.'
+                    </p>
                     <p>In order for that to work as expected, 
                         be sure the blocks you want the user to place at a specific position are different from what the normal machine would require there. 
                         So if you allow "any stone variant" to be placed at position "1, 2, 1" BE SURE that the block you have to place at "1, 2, 1" to gain a specific modifier isn't any stone variant! 
                         Or in a more general sense: Be sure that the block you want the user to place in order to get a modifier isn't a subset of the block(s) normally placed on that position. 
                         The results if the user gets the modifier or not are not determined and can flip back and forth. 
-                        This might lead to unstable system behavior and add overall load to the server.</p>
+                        This might lead to unstable system behavior and add overall load to the server.
+                    </p>
                     <p>With that in mind, let's have a look at how modifiers are specified and what they can do.</p>
                     <p>Modifiers have to be defined in the machine definition. 
                         So as an example going forward, the machine "alloy_furnace", 
-                        that is shipped as a default/example machine together with ModularMachinery, is used.</p>
-                    <div class="codesection">
-                        <p>
-                            {
-                                "registryname": "alloy_furnace",
-                                "localizedname": "Alloy Smelter",
-                                "modifiers": [
-                                    {
-                                        "elements": "modularmachinery:blockcasing@1",
-                                        "x": 0,
-                                        "y": 1,
-                                        "z": 0
-                                    }
-                                ],
-                                "parts": [
-                                    {
-                                        ...
-                                    },
-                            [...]
-                                    {
-                                        "x": 0,
-                                        "y": 1,
-                                        "z": 0,
-                                        "elements": "modularmachinery:blockcasing@2"
-                                    },
-                            [...]
-                        </p>
+                        that is shipped as a default/example machine together with ModularMachinery, is used.
+                    </p>
+                    <div class="code">
+                        <pre class="code">
+    {
+    "registryname": "alloy_furnace",
+    "localizedname": "Alloy Smelter",
+    "modifiers": [
+        {
+            "elements": "modularmachinery:blockcasing@1",
+            "x": 0,
+            "y": 1,
+            "z": 0
+        }
+    ],
+    "parts": [
+        {
+            ...
+        },
+[...]
+        {
+            "x": 0,
+            "y": 1,
+            "z": 0,
+            "elements": "modularmachinery:blockcasing@2"
+        },
+[...]</pre>
                     </div>
                     <p>So, as seen there, one part of a 'modifier' is just as the default elements in the "parts" array, 
                         just a block-definition which describes an offset and the block that needs to be placed there in order to "match". 
                         This can either be just a string defining one Blockstate, 
                         an array of blockstates or a blockstate-variable. 
                         How those definitions are supposed to be written should be clear by now. 
-                        If not, please lookup the wiki pages on basic machine definitions.</p>
+                        If not, please lookup the wiki pages on basic machine definitions.
+                    </p>
                     <p>However, now the user has no way of knowing which block(s) need to be placed where in order to get a modifier. 
                         So, a 'description' needs to be added so the user can know where to replace what. 
-                        The mod can't do this on its own as a auto-generated description might be too long or too complex to understand for the player.</p>
-                    <div class="codesection">
-                        <p>
-                            [...]
-                            "localizedname": "Alloy Smelter",
-                            "modifiers": [
-                                {
-                                    "elements": "modularmachinery:blockcasing@1",
-                                    "x": 0,
-                                    "y": 1,
-                                    "z": 0,
-                                    "description": "Replace block above controller with machine vent!"
-                                }
-                            ],
-                            "parts": [
-                        </p>
+                        The mod can't do this on its own as a auto-generated description might be too long or too complex to understand for the player.
+                    </p>
+                    <div class="code">
+                        <pre class="code">
+[...]
+"localizedname": "Alloy Smelter",
+"modifiers": [
+    {
+        "elements": "modularmachinery:blockcasing@1",
+        "x": 0,
+        "y": 1,
+        "z": 0,
+        "description": "Replace block above controller with machine vent!"
+    }
+],
+"parts": [</pre>
                     </div>
                     <p>A description can be added as shown in the example above. 
                         This should make it clear to the user what he has to do. 
                         The mod displays the description text below a preview of which block is needed to be placed to fulfill the modifier's conditions so as a pack maker you don't need to specifically name that block again. 
                         Additionally, this description should also include a short line as to what the modifier actually does, 
                         so the user knows about its effects! New-Lines are supported with '\n'. <a href="img/2dGxOjS.png">(Image example)</a>.</p>
-                    <div class="imagebox">
-                        <img src="img/2dGxOjS.png" alt="image showing new line usage">
+                    <div class="row">
+                        <img src="img/2dGxOjS.png" alt="image showing new line usage" class="img-box">
                     </div>
                     <p>The description tag is optional (version 1.9.6 and newer) and if none is supplied, 
-                        the replacement will not be explained/shown in the preview gui.</p>
+                        the replacement will not be explained/shown in the preview gui.
+                    </p>
                     <p>Now with the "replacement" part in place, the actual modifier can be defined:</p>
-                    <div class="codesection">
-                        <p>
-                            [...]
-                            "localizedname": "Alloy Smelter",
-                            "modifiers": [
-                                {
-                                    "elements": "modularmachinery:blockcasing@1",
-                                    "x": 0,
-                                    "y": 1,
-                                    "z": 0,
-                                    "description": "Replace block above controller with machine vent\nfor double item output!",
-                                    "modifier": {
-                                        "io": "output",
-                                        "target": "item",
-                                        "operation": 1,
-                                        "multiplier": 2.0
-                                    }
-                                }
-                            ],
-                            ...
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+[...]
+"localizedname": "Alloy Smelter",
+"modifiers": [
+    {
+        "elements": "modularmachinery:blockcasing@1",
+        "x": 0,
+        "y": 1,
+        "z": 0,
+        "description": "Replace block above controller with machine vent\nfor double item output!",
+        "modifier": {
+            "io": "output",
+            "target": "item",
+            "operation": 1,
+            "multiplier": 2.0
+        }
+    }
+],
+...</pre>
                     </div>
                     <p>That is done in the "modifier" tag. A modifier needs multiple things:</p>
                     <ul>
@@ -165,73 +166,64 @@
                         Some things are easier to understand with examples, 
                         so here are a few "modifier" tags and explanations as to what they will do to recipes if the modifier-condition is fulfilled for the machine.</p>
                     <p>1.</p>
-                    <div class="codesection">
-                        <p>
-                            "modifier": {
-                                "io": "output",
-                                "target": "item",
-                                "operation": 1,
-                                "multiplier": 2.0
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+"modifier": {
+    "io": "output",
+    "target": "item",
+    "operation": 1,
+    "multiplier": 2.0
+}</pre>
                     </div>
                     <p>The amount of item outputs that are produced by this machine is multiplied with 2.</p>
                     <p>2.</p>
-                    <div class="codesection">
-                        <p>
-                            "modifier": {
-                                "io": "input",
-                                "target": "item",
-                                "operation": 0,
-                                "multiplier": -0.2,
-                                "affectChance": true
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+"modifier": {
+    "io": "input",
+    "target": "item",
+    "operation": 0,
+    "multiplier": -0.2,
+    "affectChance": true
+}</pre>
                     </div>
                     <p>The <i>chance</i> that an item is consumed as input is added with -0.2; So the chance gets lowered by 0.2 / 20%.</p>
                     <p>3.</p>
-                    <div class="codesection">
-                        <p>
-                            "modifier": {
-                                "io": "output",
-                                "target": "energy",
-                                "operation": 1,
-                                "multiplier": 1.5
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+"modifier": {
+    "io": "output",
+    "target": "energy",
+    "operation": 1,
+    "multiplier": 1.5
+}</pre>
                     </div>
                     <p>The amount of energy that is produced gets multiplied by 1.5; In other words: is increased by 50%.</p>
                     <p>4.</p>
-                    <div class="codesection">
-                        <p>
-                            "modifier": {
-                                "io": "output",
-                                "target": "fluid",
-                                "operation": 0,
-                                "multiplier": 50
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+"modifier": {
+    "io": "output",
+    "target": "fluid",
+    "operation": 0,
+    "multiplier": 50
+}</pre>
                     </div>
                     <p>Any fluid that this machine produces/outputs is increased by 50mb. (Addition with 50)</p>
                     <p>5.</p>
-                    <div class="codesection">
-                        <p>
-                            "modifier": {
-                                "io": "input",
-                                "target": "item",
-                                "operation": 1,
-                                "multiplier": 0,
-                                "affectChance": true
-                            }
-                        </p>
+                    <div class="code">
+                        <pre class="code">
+"modifier": {
+    "io": "input",
+    "target": "item",
+    "operation": 1,
+    "multiplier": 0,
+    "affectChance": true
+}</pre>
                     </div>
                     <p>The chance that an item is consumed as input is multiplied by 0. In other words: No items are consumed as inputs for any recipe.</p>
                 </div>
             </div>
         </div>
     </body>
-    <script>
-        genmenu()
-        genheader()
-    </script>
 </html>
