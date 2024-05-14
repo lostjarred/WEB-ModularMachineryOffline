@@ -57,7 +57,7 @@ a.button:hover, a.button:active{
 }
 div.menu {
     flex-shrink: 0; 
-    flex-basis: 10%;
+    flex-basis: 18%;
 }
 div.code {
     border: 3px black solid;
