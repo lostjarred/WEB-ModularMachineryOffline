@@ -89,7 +89,8 @@ span.bold {
 }
 span.code {
     background-color: #000000;
-    color: #FFFFFF
+    color: #FFFFFF;
+    padding: 1%;
 }
 @media screen and (min-width: 900px) {
     img.img-box {
