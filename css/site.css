@@ -63,6 +63,7 @@ div.menu {
 div.code {
     border: 3px black solid;
     margin: 1%;
+    padding: 1%;
 }
 pre.code {
     width: 100%; 
